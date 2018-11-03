@@ -5,6 +5,9 @@ intense cube
 to do the python thing
 
 `virtualenv venv`
+
 `. venv/bin/activate`
+
 `pip install -r reqs.txt`
+
 
