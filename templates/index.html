@@ -14,6 +14,14 @@
       <p>Here is some information</p>
       <p>This is a very compelling reason to like our project</p>
     </div>
+    <div>
+      <button onclick='scene.rotateX(+0.2)' class="btn btn-lg">+X</button>
+      <button onclick='scene.rotateX(-0.2)' class="btn btn-lg">-X</button>
+      <button onclick='scene.rotateY(+0.2)' class="btn btn-lg">+Y</button>
+      <button onclick='scene.rotateY(-0.2)' class="btn btn-lg">-Y</button>
+      <button onclick='scene.rotateZ(+0.2)' class="btn btn-lg">+Z</button>
+      <button onclick='scene.rotateZ(-0.2)' class="btn btn-lg">-Z</button>
+    </div>
   </div>
 	<script src="{{ url_for('static', filename='libs/three.min.js') }}"></script>
   <script src="{{ url_for('static', filename='display.js') }}"></script>

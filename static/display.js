@@ -30,14 +30,14 @@ const COLORS = ['G', 'Y', 'B', 'W', 'O', 'R'];
 const COLORWORDS = {
   "G": 0x04db2f,
   "Y": 0xeff707,
-  "B": 0x4286f4,
+  "B": 0x00fff2,
   "W": 0xffffff,
   "O": 0xf78307,
   "R": 0xdb2f04,
   "A": 0x000000
 }
 const ORIGIN = new THREE.Vector3(0,0,0);
-const faceIdxTransform = [5,2,4,3,0,1];
+const faceIdxTransform = [5,3,4,2,0,1];
 /*
 their representation of a cube
    5
