@@ -30,16 +30,17 @@ moves = {
         "Mi": {"indpairs":[(0,1),(1,2),(2,3),(3,0)], "indflips":([0,1,2],1)},
         "R":  {"indpairs":[(1,0),(2,1),(3,2),(0,3)], "indflips":([0,1,2],2)},
         "Ri": {"indpairs":[(0,1),(1,2),(2,3),(3,0)], "indflips":([0,1,2],2)},
-        "U":  {"indpairs":[(0,4),(5,0),(2,5),(4,2)], "indflips":(0)},
-        "Ui": {"indpairs":[(4,0),(0,5),(5,2),(2,4)], "indflips":(0)},
         "L":  {"indpairs":[(0,1),(1,2),(2,3),(3,0)], "indflips":([0,1,2],0)},
         "Li": {"indpairs":[(1,0),(2,1),(3,2),(0,3)], "indflips":([0,1,2],0)},
+        "U":  {"indpairs":[(0,4),(5,0),(2,5),(4,2)], "indflips":(0)},
+        "Ui": {"indpairs":[(4,0),(0,5),(5,2),(2,4)], "indflips":(0)},
+        "D":  {"indpairs":[(4,0),(0,5),(5,2),(2,4)], "indflips":(2)},
+        "Di": {"indpairs":[(0,4),(5,0),(2,5),(4,2)], "indflips":(2)},
+
         "F":  {"indpairs":[(1,4),(4,3),(3,5),(5,1)], "indflips":(2)},
         "Fi": {"indpairs":[(4,1),(3,4),(5,3),(1,5)], "indflips":(2)},
         "B":  {"indpairs":[(4,1),(3,4),(5,3),(1,5)], "indflips":(0)},
         "Bi": {"indpairs":[(1,4),(4,3),(3,5),(5,1)], "indflips":(0)},
-        "D":  {"indpairs":[(4,0),(0,5),(5,2),(2,4)], "indflips":(2)},
-        "Di": {"indpairs":[(0,4),(5,0),(2,5),(4,2)], "indflips":(2)}
         }
 
 algs = {}
@@ -63,20 +64,46 @@ for i in range(len(COLORS)):
         for col in range(3): 
             tmp.append(([i, [row, col]], COLORS[i], True))
 
-def rotate(oldcube, move):
+def rotate(oldcube, command):
     newcube = [np.copy(oldcubei) for oldcubei in oldcube]
-    for indpair in moves[move]["indpairs"]:
-        newcube[indpair[1]][moves[move]["indflips"]] = oldcube[indpair[0]][moves[move]["indflips"]]
+
+    if command == "F": 
+        newcube[4][:,0] = oldcube[1][2]
+        newcube[3][0] = oldcube[4][:,0]
+        newcube[5][:,2] = oldcube[3][0]
+        newcube[1][2] = oldcube[5][:,2]
+    elif command == "Fi": 
+        newcube[5][:,2] = oldcube[1][2]
+        newcube[3][0] = oldcube[5][:,2]
+        newcube[4][:,0] = oldcube[3][0]
+        newcube[1][2] = oldcube[4][:,0]
+    elif command== "B": 
+        newcube[1][0] = oldcube[4][:,2]
+        newcube[4][:,2] = oldcube[3][2]
+        newcube[3][2] = oldcube[5][:,0]
+        newcube[5][:,0] = oldcube[1][0]
+    elif command== "Bi": 
+        newcube[4][:,2] = oldcube[1][0]
+        newcube[3][2] = oldcube[4][:,2]
+        newcube[5][:,0] = oldcube[3][2]
+        newcube[1][0] = oldcube[5][:,0]
+    
+    else: 
+        for indpair in moves[command]["indpairs"]:
+            newcube[indpair[1]][moves[command]["indflips"]] = oldcube[indpair[0]][moves[command]["indflips"]]
     return newcube
 
+# Fix this to take Fi
 def doFormula(oldcube, formula):
-    for move in formula:
+    for move in formula.split():
         oldcube = rotate(oldcube, move)
     return oldcube
 
 
 pprint(cube)
-print("---------")
-cube = doFormula(cube, "RF")
+print("--------")
+cube = doFormula(cube, "Fi B")
+#  cube = rotate(cube, "F")
+cube = rotate(cube, "B")
 pprint(cube)
 
