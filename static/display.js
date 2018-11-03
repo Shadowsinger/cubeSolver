@@ -1,5 +1,7 @@
 // code for the graphics
 
+// layers are closest to you, middle from you, farthest from you
+
 let camera, scene, renderer;
 let matrices = {};  // external rotation matricies
 let maxCt = 10;
@@ -10,10 +12,15 @@ let materials = [];
 let meshes = [];
 let dims = [3, 9]; // 3 layers, 9 cubes per layer
 let w = 0.1;
-let meshInds = [
-  [[0,0],[0,1],[0,2],[0,3]],
-  [[1,0],[1,1],[1,2],[1,3]]
-];
+let meshInds = [];
+for (let i = 0; i < 3; i++)
+{
+  meshInds.push([]);
+  for (let j = 0; j < 9; j++)
+  {
+    meshInds[i].push([i, j]);
+  }
+}
 
 let translates = [];
 for (let i = 0; i < 3; i++)
@@ -30,20 +37,20 @@ const COLORS = ['G', 'Y', 'B', 'W', 'O', 'R'];
 const COLORWORDS = {
   "G": 0x04db2f,
   "Y": 0xeff707,
-  "B": 0x4286f4,
+  "B": 0x00fff2,
   "W": 0xffffff,
   "O": 0xf78307,
   "R": 0xdb2f04,
   "A": 0x000000
 }
 const ORIGIN = new THREE.Vector3(0,0,0);
-const faceIdxTransform = [5,2,4,3,0,1];
+const faceIdxTransform = [5,3,4,2,0,1];
 /*
 their representation of a cube
    5
- 1 2 0
+ 1 3 0
    4
-   3
+   2
 mine:
    0
  5 1 4
@@ -196,12 +203,14 @@ function init(colorData) {
 
 
   rotateIdxs = {
-    "R": [[0,3],[0,2],[1,2],[1,3]],
-    "L": [[0,0],[1,0],[1,1],[0,1]],
-    "U": [[0,1],[1,1],[1,2],[0,2]],
-    "D": [[0,3],[1,3],[1,0],[0,0]],
-    "F": [[0,0],[0,1],[0,2],[0,3]],
-    "B": [[1,3],[1,2],[1,1],[1,0]]
+    // "R": [[0, 5], [0, 8], [1, 8], [2, 8], [2, 5], [2, 2], [1, 2], [0, 2]],
+    // "R": [[0,2],[1,2],[2,2],[2,5],[2,8],[1,8],[0,8],[0,5]],
+    "R": [[0,2],[0,5],[0,8],[1,2],[1,5],[1,8],[2,2],[2,5],[2,8]],
+    "L": [[0,0],[0,3],[0,6],[1,0],[1,3],[1,6],[2,0],[2,3],[2,6]],
+    "U": [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]],
+    "D": [[0,6],[0,7],[0,8],[1,6],[1,7],[1,8],[2,6],[2,7],[2,8]],
+    "F": [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8]],
+    "B": [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8]]
   }
 
   for (let key in rotateIdxs) {

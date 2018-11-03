@@ -75,7 +75,7 @@ def doFormula(oldcube, formula):
     return oldcube
 
 
-pprint(cube)
+pprint(rotate(cube, 'R'))
 
 # layer 0 is closest to you
 faces = {}
