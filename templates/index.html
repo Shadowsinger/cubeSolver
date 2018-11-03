@@ -5,7 +5,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <title>cool computer cube computations (CCCC)</title>
+  <title>the cube</title>
 </head>
 <body>
   <div class="container">
@@ -13,14 +13,6 @@
     <div class="card">
       <p>Here is some information</p>
       <p>This is a very compelling reason to like our project</p>
-    </div>
-    <div>
-      <button onclick='scene.rotateX(+0.2)' class="btn btn-lg">+X</button>
-      <button onclick='scene.rotateX(-0.2)' class="btn btn-lg">-X</button>
-      <button onclick='scene.rotateY(+0.2)' class="btn btn-lg">+Y</button>
-      <button onclick='scene.rotateY(-0.2)' class="btn btn-lg">-Y</button>
-      <button onclick='scene.rotateZ(+0.2)' class="btn btn-lg">+Z</button>
-      <button onclick='scene.rotateZ(-0.2)' class="btn btn-lg">-Z</button>
     </div>
   </div>
 	<script src="{{ url_for('static', filename='libs/three.min.js') }}"></script>
