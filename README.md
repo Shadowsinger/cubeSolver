@@ -6,5 +6,5 @@ to do the python thing
 
 `virtualenv venv`
 `. venv/bin/activate`
-'pip install reqs.txt'
+`pip install -r reqs.txt`
 
