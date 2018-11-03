@@ -1,3 +1,0 @@
-
-Rubik's cube solver
-
