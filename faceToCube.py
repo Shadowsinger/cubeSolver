@@ -74,7 +74,6 @@ def doFormula(oldcube, formula):
         oldcube = rotate(oldcube, move)
     return oldcube
 
-
 pprint(rotate(cube, 'R'))
 
 # layer 0 is closest to you

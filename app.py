@@ -35,7 +35,8 @@ def rotate(oldcube, move):
             import pdb; pdb.set_trace()
     return newcube
 cube = rotate(cube, 'R')
-cube = rotate(cube, 'F')
+# cube = rotate(cube, 'F')
+# cube = rotate(cube, 'U')
 
 
 # for every face on the cube, for every color on the side (2by2 matrix) what face and number of fold out does it correspond to?
