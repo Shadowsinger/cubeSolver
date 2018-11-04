@@ -14,9 +14,7 @@ virtualenv venv
 pip install -r reqs.txt
 ```
 
-![Image of image detection process]
-(Figure_1.png)
-
+<img src="Figure_1.png">
 # indpairs specifies what side goes to what side
 # ind flips is the indices on those sides to flip
 # ie for R turn the first column of 1 into the first column of 0
